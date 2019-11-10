@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: bf56197d094060349907c8aaaebb4895
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FHA Condensed French Shaded NC
+  fontNames:
+  - FHA Condensed French Shaded NC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 78cdf4085f66c384c9857524cd325dd1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
