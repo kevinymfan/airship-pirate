@@ -100,7 +100,19 @@ public class GameManager : MonoBehaviour {
 
     public void AcceptItem() {
         ItemSO item = fishPool.CatchItem();
-        // Handle the item
+        
+        switch (item.category) {
+            case ItemSO.ItemCategory.Air:
+                ship.AddAir(item.quantity);
+                break;
+            case ItemSO.ItemCategory.Fuel:
+                ship.AddFuel(item.quantity);
+                break;
+            case ItemSO.ItemCategory.Alcohol:
+                ship.AddAlcohol(item.quantity);
+                break;
+        }
+
         fishingPaused = false;
     }
 

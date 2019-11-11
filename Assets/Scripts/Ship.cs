@@ -103,15 +103,15 @@ public class Ship : MonoBehaviour {
         return serving;
     }
 
-    public void GainAlcohol(float amount) {
+    public void AddAlcohol(float amount) {
         alcohol = Mathf.Min(alcohol + amount, maxAlcohol);
     }
 
-    public void GainFuel(float amount) {
+    public void AddFuel(float amount) {
         fuel = Mathf.Min(fuel + amount, maxFuel);
     }
 
-    public void GainAir(float amount) {
+    public void AddAir(float amount) {
         air = Mathf.Min(air + amount, maxAir);
     }
 

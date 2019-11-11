@@ -302,15 +302,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickLength: 1
-  fuel: 100
+  fuel: 50
   maxFuel: 100
   fuelUseTime: 5
-  air: 100
+  air: 90
   maxAir: 100
   baseAirLossRate: -1
   airGainBase: 0.5
   airLossTime: 1
-  alcohol: 0
+  alcohol: 10
   maxAlcohol: 100
   ticksSurvived: 0
   speed: 10
@@ -1356,7 +1356,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  categories: 0105
+  categories: 010506020304
   itemGenerator:
     maxFuelQ: 50
     maxAirQ: 50
@@ -1926,7 +1926,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1923500923}
-        m_MethodName: inputRecieved
+        m_MethodName: InputRecieved
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4396,7 +4396,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1923500923}
-        m_MethodName: inputRecieved
+        m_MethodName: InputRecieved
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4786,7 +4786,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1923500923}
-        m_MethodName: inputRecieved
+        m_MethodName: InputRecieved
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5014,7 +5014,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  text: 
 --- !u!114 &1923500923
 MonoBehaviour:
   m_ObjectHideFlags: 0
