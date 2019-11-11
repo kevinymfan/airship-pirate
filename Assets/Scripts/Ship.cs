@@ -28,6 +28,7 @@ public class Ship : MonoBehaviour {
     [SerializeField]
     private float maxAlcohol = 100f;
 
+    public int ticksSurvived = 0;
     [SerializeField]
     private int speed = 10;
     public int distanceTravelled = 0;
@@ -93,6 +94,7 @@ public class Ship : MonoBehaviour {
 
     private void PassTime() {
         distanceTravelled += GetSpeed();
+        ticksSurvived += 1;
 
         ++fuelClock;
         if (fuelClock > fuelUseTime && fuel > 0) {
