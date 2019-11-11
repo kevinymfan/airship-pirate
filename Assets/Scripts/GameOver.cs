@@ -7,25 +7,40 @@ public class GameOver : MonoBehaviour {
     [SerializeField]
     private Image blackScreen;
     private float[] aLevels = { 0.2f, 0.4f, 0.6f, 0.8f, .9f, 1 };
-    private int level = 0;
 
     [SerializeField]
     private float transitionDelay = 1;
     private float nextTransition;
 
-    public string gameOverText;
+    [SerializeField]
+    private Text gameOverText, reasonText, timeAliveText, finalScoreText;
+    [HideInInspector]
+    public string gameOverReason;
+    [HideInInspector]
+    public int timeAlive;
+    [HideInInspector]
+    public int finalScore;
 
     void Start() {
-        nextTransition = Time.time + transitionDelay;
+        reasonText.text = gameOverReason;
+        timeAliveText.text = "You survived for " + timeAlive + " seconds";
+        finalScoreText.text = "Final Score: " + finalScore;
+        StartCoroutine(GameOverRoutine());
     }
 
-    void Update() {
-        if (level < aLevels.Length && Time.time > nextTransition) {
+    private IEnumerator GameOverRoutine() {
+        foreach (float a in aLevels) {
             Color color = blackScreen.color;
-            color.a = aLevels[level];
+            color.a = a;
             blackScreen.color = color;
-            level += 1;
-            nextTransition = Time.time + transitionDelay;
+            yield return new WaitForSeconds(1);
         }
+        gameOverText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        reasonText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        timeAliveText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        finalScoreText.gameObject.SetActive(true);
     }
 }

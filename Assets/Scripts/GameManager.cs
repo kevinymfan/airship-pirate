@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour {
     private Ship ship;
 
     [SerializeField]
-    private int score;
+    private int timeAlive;
     [SerializeField]
-    private int distance;
+    private int distanceTravelled;
 
     [SerializeField]
     private FishPool fishPool;
@@ -29,10 +29,14 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private GameOver gameOverScreen;
+    private bool gameOver = false;
     public enum GameOverReason : byte {
         Altitude,
         Mutiny
     }
+
+    [SerializeField]
+    private Parallax background;
 
     void Start() {
         crewGenerator.calcProbabilities();
@@ -40,28 +44,40 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
-        score = ship.ticksSurvived;
-        distance = ship.distanceTravelled;
+        timeAlive = ship.ticksSurvived;
+        distanceTravelled = ship.distanceTravelled;
 
-        if (Time.time >= nextTick) {
+        if (!gameOver && Time.time >= nextTick) {
             HandleFishing();
             nextTick = Time.time + tickLength / fastForward;
         }
+
+        if (ship.air == 0) {
+            EndGame(GameOverReason.Altitude);
+        }
+    }
+
+    public int CalculateScore() {
+        return timeAlive;
     }
 
     public void EndGame(GameOverReason reason) {
+        gameOver = true;
         switch (reason) {
             case GameOverReason.Altitude:
-                gameOverScreen.gameOverText = "Like Icarus, you fell from the sky, except with more swag";
+                gameOverScreen.gameOverReason = "Like Icarus, you fell from the sky, except with more swag. Hopefully.";
                 break;
             case GameOverReason.Mutiny:
-                gameOverScreen.gameOverText = "Your crew decide to give you a taste of your own medicine and tossed you overboard";
+                gameOverScreen.gameOverReason = "Your crew decide to give you a taste of your own medicine and tossed you overboard";
                 break;
             default:
-                gameOverScreen.gameOverText = "You managed to lose in a way that the developers didn't even know was possible!";
+                gameOverScreen.gameOverReason = "You managed to lose in a way that the developers didn't even know was possible!";
                 break;
         }
+        gameOverScreen.timeAlive = timeAlive;
+        gameOverScreen.finalScore = CalculateScore();
         gameOverScreen.gameObject.SetActive(true);
+        background.Speed = 0;
     }
 
     void HandleFishing() {
