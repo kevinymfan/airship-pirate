@@ -23,7 +23,7 @@ public class ItemGenerator
     private RarityText fuelText;
     private RarityText airText;
     private RarityText flairText;
-
+    [HideInInspector]
     public FishPool pool;
 
     public void Start() {
