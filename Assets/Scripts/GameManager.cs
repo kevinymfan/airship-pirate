@@ -27,22 +27,41 @@ public class GameManager : MonoBehaviour {
     private CrewGenerator crewGenerator;
     private ProfileSO crewCandidate;
 
+    [SerializeField]
+    private GameOver gameOverScreen;
+    public enum GameOverReason : byte {
+        Altitude,
+        Mutiny
+    }
+
     void Start() {
-        DontDestroyOnLoad(this.gameObject);
         crewGenerator.calcProbabilities();
         nextTick = Time.time;
     }
 
     void Update() {
-        if (ship) {
-            score = ship.ticksSurvived;
-            distance = ship.distanceTravelled;
-        }
+        score = ship.ticksSurvived;
+        distance = ship.distanceTravelled;
 
         if (Time.time >= nextTick) {
             HandleFishing();
             nextTick = Time.time + tickLength / fastForward;
         }
+    }
+
+    public void EndGame(GameOverReason reason) {
+        switch (reason) {
+            case GameOverReason.Altitude:
+                gameOverScreen.gameOverText = "Like Icarus, you fell from the sky, except with more swag";
+                break;
+            case GameOverReason.Mutiny:
+                gameOverScreen.gameOverText = "Your crew decide to give you a taste of your own medicine and tossed you overboard";
+                break;
+            default:
+                gameOverScreen.gameOverText = "You managed to lose in a way that the developers didn't even know was possible!";
+                break;
+        }
+        gameOverScreen.gameObject.SetActive(true);
     }
 
     void HandleFishing() {
