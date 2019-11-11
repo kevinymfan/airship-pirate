@@ -90,9 +90,9 @@ public class GameManager : MonoBehaviour {
             ItemSO item = fishPool.FishItem();
             if (item.category.Equals(ItemSO.ItemCategory.Crew)) {
                 crewCandidate = crewGenerator.GenerateCrewProfile(item);
-                decisionUI.setUpProfile(crewCandidate);
+                decisionUI.SetUpProfile(crewCandidate);
             } else {
-                decisionUI.setUpItem(item);
+                decisionUI.SetUpItem(item);
             }
             fishClock = 0;
         }

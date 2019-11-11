@@ -46,64 +46,66 @@ public class DecisionUI : MonoBehaviour {
         this.popUpTween.addTime(delta);
         this.popDownTween.addTime(delta);
         switch (this.state) {
-            case 0: popUp(); break;
-            case 1: awaitInput(); break;
-            case 2: popDown(); break;
+            case 0: PopUp(); break;
+            case 1: AwaitInput(); break;
+            case 2: PopDown(); break;
             default: break;
         }
     }
 
-    private void popUp() {
+    private void PopUp() {
         this.gameObject.transform.GetComponent<RectTransform>().localPosition = this.popUpTween.getTweenVec();
         if (this.popUpTween.isDone()) {
             this.state = 1;
         }
     }
 
-    private void addCrew(int pos) {
+    private void AddCrew(int pos) {
         gameManager.AddCrew(pos);
-        this.inputRecieved();
+        this.InputRecieved();
     }
 
-    private void awaitInput() {
+    private void AwaitInput() {
         if (this.profile) {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                addCrew(0);
+                AddCrew(0);
             } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
-                addCrew(1);
+                AddCrew(1);
             } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
-                addCrew(2);
+                AddCrew(2);
             } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
-                addCrew(3);
+                AddCrew(3);
             } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
-                addCrew(4);
+                AddCrew(4);
             }
         }
 
         if (Input.GetKeyUp(KeyCode.Space)) {
-            this.inputRecieved();
+            this.InputRecieved();
         }
     }
 
-    private void popDown() {
+    private void PopDown() {
         this.gameObject.transform.GetComponent<RectTransform>().localPosition = this.popDownTween.getTweenVec();
         if (this.popDownTween.isDone()) {
             this.gameObject.SetActive(false);
         }
     }
 
-    public void inputRecieved() {
+    public void InputRecieved() {
         this.state = 2;
         this.popDownTween.reset();
         dialogueBox.HideDialogue("Welcome aboard!");
     }
-    public void setUpItem(ItemSO item) {
+    public void SetUpItem(ItemSO item) {
         this.item = item;
+        Debug.Log(item.name);
+        Debug.Log("asdf" + item.PrettyText());
         dialogueBox.ShowKeepItemDialogue(item.PrettyText());
 
         this.gameObject.SetActive(true);
     }
-    public void setUpProfile(ProfileSO profile) {
+    public void SetUpProfile(ProfileSO profile) {
         this.profile = profile;
         dialogueBox.ShowKeepCrewDialogue(profile.PrettyText());
 

@@ -18,6 +18,7 @@ public class CrewCard : MonoBehaviour {
 
     [SerializeField]
     private Crew crew;
+    private int crewHash;
     private bool slotEmpty = true;
 
     [SerializeField]
@@ -27,7 +28,8 @@ public class CrewCard : MonoBehaviour {
     private Sprite[] portraitSprites;
 
     void Update() {
-        if (crew.profile && crewName.text != crew.profile.crewName) {
+        if (crew.profile && crewHash != crew.profile.GetHashCode()) {
+            crewHash = crew.profile.GetHashCode();
             crewName.text = crew.profile.crewName;
             portrait.sprite = portraitSprites[Random.Range(0, portraitSprites.Length)];
         }

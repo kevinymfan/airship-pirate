@@ -23,7 +23,7 @@ public class Crew : MonoBehaviour {
     [SerializeField]
     int recoveryTime = 5;
     [SerializeField]
-    int drinkingCooldown = 3;
+    int drinkingCooldown = 5;
 
     float nextTick;
     [SerializeField]
@@ -31,7 +31,7 @@ public class Crew : MonoBehaviour {
 
     void Start() {
         nextTick = Time.time;
-        happiness = 6;
+        happiness = Random.Range(5, 8);
         drunkenness = 0;
     }
 
@@ -51,7 +51,7 @@ public class Crew : MonoBehaviour {
 
     private void HandleDrinking() {
         ++drinkingClock;
-        if (happiness < 3 && drinkingClock > drinkingCooldown) {
+        if (happiness < 5 && drinkingClock > drinkingCooldown) {
             float alcoholServing = ship.ServeAlcohol();
             drunkenness = Mathf.RoundToInt(Mathf.Min(drunkenness + alcoholServing * maxDrunkenness / profile.tolerance, maxDrunkenness));
             drinkingClock = 0;

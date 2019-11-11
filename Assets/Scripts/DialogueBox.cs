@@ -11,16 +11,6 @@ public class DialogueBox : MonoBehaviour {
     [SerializeField]
     private Button[] crewButtons;
 
-    public string text;
-
-    void Start() {
-        mainText.text = text;
-    }
-
-    void Update() {
-
-    }
-
     public void ShowKeepCrewDialogue(string text) {
         mainText.text = text;
         buttonX.gameObject.SetActive(true);
