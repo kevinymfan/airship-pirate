@@ -51,25 +51,7 @@ public class Ship : MonoBehaviour {
         }
     }
 
-    private int GetEmptyCrewSlot() {
-        for (int i = 0; i < crewList.Length; i++) {
-            if (!crewList[i].isActiveAndEnabled) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public bool CanAdoptCrew() {
-        return GetEmptyCrewSlot() != -1;
-    }
-
-    public void AdoptCrew(ProfileSO newMember) {
-        int crewSlot = GetEmptyCrewSlot();
-        if (crewSlot == -1) {
-            Debug.Log("Tried to adopt crew member, but no slots were available");
-            return;
-        }
+    public void AdoptCrew(ProfileSO newMember, int crewSlot) {
         crewList[crewSlot].profile = newMember;
         if (crewList[crewSlot].GetSkillLevel() > 0) {
             crewSkills[crewList[crewSlot].GetSkillType()] += crewList[crewSlot].GetSkillLevel();
@@ -78,6 +60,7 @@ public class Ship : MonoBehaviour {
     }
 
     public void BootCrew(int crewSlot) {
+        if (!crewList[crewSlot].gameObject.activeSelf) return;
         crewList[crewSlot].gameObject.SetActive(false);
         if (crewList[crewSlot].GetSkillLevel() > 0) {
             crewSkills[crewList[crewSlot].GetSkillType()] -= crewList[crewSlot].GetSkillLevel();

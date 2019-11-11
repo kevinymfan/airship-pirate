@@ -1010,6 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423348208}
   - component: {fileID: 423348209}
+  - component: {fileID: 423348210}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1046,6 +1047,46 @@ MonoBehaviour:
   ship: {fileID: 21943021}
   score: 0
   distance: 0
+  fishPool: {fileID: 423348210}
+  crewGenerator:
+    minW: 50
+    maxW: 100
+    rarityWAdjust: 0.2
+    maxTempRate: 5
+    skillTypes: 020103
+    skillTypesPropabilities: 010000000100000001000000
+    skillLevels: 000102
+    skillLevelsPropabilities: 050000000300000002000000
+--- !u!114 &423348210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423348207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e766f31a6741df74fbc4b9db6b9e2dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstFish:
+  - {fileID: 11400000, guid: afbe58c4421947f498d8f230528f3980, type: 2}
+  ship: {fileID: 21943021}
+  rarityDistribution:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  categories: 010204030506
+  itemGenerator:
+    maxFuelQ: 50
+    maxAirQ: 50
+    maxAlcoholQ: 50
+    maxClothFlairW: 5
+    maxShipFlairW: 20
+    pool: {fileID: 0}
+  fishedItem: {fileID: 0}
 --- !u!1001 &495964322
 PrefabInstance:
   m_ObjectHideFlags: 0
