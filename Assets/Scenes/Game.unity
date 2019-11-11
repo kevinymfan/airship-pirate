@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickLength: 1
   fastForward: 1
-  fishTime: 1
+  fishTime: 2
   ship: {fileID: 21943021}
   timeAlive: 0
   distanceTravelled: 0
