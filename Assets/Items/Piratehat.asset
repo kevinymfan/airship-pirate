@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pirate Hat
   flavorText: I needed one of these...
+  category: 0
+  quantity: 1
   weight: 0

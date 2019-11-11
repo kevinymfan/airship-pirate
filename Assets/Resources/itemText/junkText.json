@@ -1,0 +1,16 @@
+{
+  "names": [
+    { "choices": ["Rotten Apple", "Fish", "Head of Lettuce"] },
+    { "choices": ["Rubber Tire", "Plastic Bag"] }
+  ],
+  "universalNames": [
+    "????"
+  ],
+  "flavors": [{ "choices": ["I have no use for food"] }, { "choices": [] }],
+  "universalFlavors": [
+    "This isn't beer!",
+    "What would I do with this?",
+    "Uncool.",
+    "It will only slow me down..."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "names": [
+    { "choices": ["Rotten Apple", "Fish", "Head of Lettuce"] },
+    { "choices": ["val1bis", "val2bis"] }
+  ],
+  "universalNames":["This isn't beer!", "What would I do with this?", "Uncool."],
+  "flavors": [
+    { "choices": ["I have no use for food"] },
+    { "choices": ["val1bis", "val2bis"] }
+  ],
+  "universalFlavors":[]
+}

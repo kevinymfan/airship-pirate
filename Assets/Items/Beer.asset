@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   itemName: Beer
-  flavorText: Yo hoy! Some good 'ole beer!
-  weight: 0.1
+  flavorText: Yo hoy! A good 'ole beer!
+  category: 2
+  quantity: 1
+  weight: 0

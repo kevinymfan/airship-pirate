@@ -1,0 +1,15 @@
+{
+  "names": [
+    { "choices": ["Balloon animal"] },
+    { "choices": ["Compressed air"] },
+    { "choices": ["Liquid nitrogen"] }
+  ],
+  "universalNames":[],
+  "flavors": [
+    { "choices": ["Anything helps"] },
+    { "choices": ["That'll keep'er a'float!"] },
+    { "choices": ["Climb! Climb! Climb!"] }
+  ],
+  "universalFlavors":[]
+}
+

@@ -1,0 +1,15 @@
+{
+  "names": [
+    { "choices": ["Empty beer bottle"] },
+    { "choices": ["Coor's lite"] },
+    { "choices": ["A brewery barrel"] }
+  ],
+  "universalNames":["Bottle of something or other"],
+  "flavors": [
+    { "choices": ["Where is the rest?"] },
+    { "choices": ["Looks refreshing!"] },
+    { "choices": ["It'll never end!"] }
+  ],
+  "universalFlavors":["It reeks of alcohol. Good!"]
+}
+

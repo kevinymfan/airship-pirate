@@ -1,0 +1,14 @@
+{
+  "names": [
+    { "choices": ["Rubbing alcohol"] },
+    { "choices": ["Gasoline tank"] },
+    { "choices": ["Hydrogen fuel cell"] }
+  ],
+  "universalNames":["Bottle of something or other"],
+  "flavors": [
+    { "choices": ["Anything helps"] },
+    { "choices": ["That'll keep her going!"] },
+    { "choices": ["Fuel for days!"] }
+  ],
+  "universalFlavors":["Well it says flamable..."]
+}
