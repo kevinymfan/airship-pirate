@@ -53,6 +53,7 @@ public class Ship : MonoBehaviour {
 
     public void AdoptCrew(ProfileSO newMember, int crewSlot) {
         crewList[crewSlot].profile = newMember;
+        crewList[crewSlot].Reset();
         if (crewList[crewSlot].GetSkillLevel() > 0) {
             crewSkills[crewList[crewSlot].GetSkillType()] += crewList[crewSlot].GetSkillLevel();
         }

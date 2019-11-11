@@ -1243,7 +1243,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  categories: 010204030506
+  categories: 0105
   itemGenerator:
     maxFuelQ: 50
     maxAirQ: 50

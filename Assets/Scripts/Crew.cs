@@ -23,7 +23,7 @@ public class Crew : MonoBehaviour {
     [SerializeField]
     int recoveryTime = 5;
     [SerializeField]
-    int drinkingCooldown = 10;
+    int drinkingCooldown = 3;
 
     float nextTick;
     [SerializeField]
@@ -31,7 +31,13 @@ public class Crew : MonoBehaviour {
 
     void Start() {
         nextTick = Time.time;
-        happiness = 6; 
+        happiness = 6;
+        drunkenness = 0;
+    }
+
+    public void Reset() {
+        nextTick = Time.time;
+        happiness = 6;
         drunkenness = 0;
     }
 

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     float nextTick;
-    public float tickLength = 1f;
+    public float tickLength = 2f;
     [SerializeField, Range(1, 10)]
     private int fastForward = 1;
 
     private int fishClock = 0;
     [SerializeField]
     private int fishTime = 1;
-    private bool fishingPause = false;
+    private bool fishingPaused = false;
 
     [SerializeField]
     private Ship ship;
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
         distanceTravelled = ship.distanceTravelled;
 
         if (!gameOver && Time.time >= nextTick) {
-            HandleFishing();
+            if (!fishingPaused) HandleFishing();
             nextTick = Time.time + tickLength / fastForward;
         }
 
@@ -84,12 +84,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void HandleFishing() {
-        if (!fishingPause) {
-            ++fishClock;
-        }
+        ++fishClock;
         if (fishClock >= fishTime) {
-            Debug.Log("Fished");
-            fishingPause = true;
+            fishingPaused = true;
             ItemSO item = fishPool.FishItem();
             if (item.category.Equals(ItemSO.ItemCategory.Crew)) {
                 crewCandidate = crewGenerator.GenerateCrewProfile(item);
@@ -104,13 +101,13 @@ public class GameManager : MonoBehaviour {
     public void AcceptItem() {
         ItemSO item = fishPool.CatchItem();
         // Handle the item
+        fishingPaused = false;
     }
 
     public void Refuse() {
-        fishingPause = false;
         crewCandidate = null;
         fishPool.ReleaseItem();
-        Debug.Log("Refused");
+        fishingPaused = false;
     }
 
     public void AddCrew(int pos) {
@@ -118,5 +115,6 @@ public class GameManager : MonoBehaviour {
         ship.AdoptCrew(crewCandidate, pos);
         fishPool.CatchItem();
         crewCandidate = null;
+        fishingPaused = false;
     }
 }

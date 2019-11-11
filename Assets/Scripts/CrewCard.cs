@@ -27,10 +27,12 @@ public class CrewCard : MonoBehaviour {
     private Sprite[] portraitSprites;
 
     void Update() {
+        if (crew.profile && crewName.text != crew.profile.crewName) {
+            crewName.text = crew.profile.crewName;
+            portrait.sprite = portraitSprites[Random.Range(0, portraitSprites.Length)];
+        }
         if (slotEmpty) {
             if (crew.isActiveAndEnabled) {
-                crewName.text = crew.profile.crewName;
-                portrait.sprite = portraitSprites[Random.Range(0, portraitSprites.Length)];
                 occupied.SetActive(true);
                 vacant.SetActive(false);
                 slotEmpty = false;
@@ -50,6 +52,11 @@ public class CrewCard : MonoBehaviour {
     private void UpdateHappiness() {
         int selector = Mathf.FloorToInt((crew.happiness + 1f) / 2) - 1;
         for (int i = 0; i < 4; i++) {
+            if (crew.happiness == 0) {
+                happyBar[i].sprite = happinessSpriteMap[2];
+                continue;
+            }
+
             if (i < selector) {
                 happyBar[i].sprite = happinessSpriteMap[selector*3+2];
             } else if (i > selector) {
