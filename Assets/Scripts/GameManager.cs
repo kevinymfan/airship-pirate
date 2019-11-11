@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 
     private int fishClock = 0;
     [SerializeField]
-    private int fishTime = 10;
+    private int fishTime = 1;
     private bool fishingPause = false;
 
     [SerializeField]
@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Parallax background;
+
+    [SerializeField]
+    private DecisionUI decisionUI;
 
     void Start() {
         crewGenerator.calcProbabilities();
@@ -85,14 +88,16 @@ public class GameManager : MonoBehaviour {
             ++fishClock;
         }
         if (fishClock >= fishTime) {
+            Debug.Log("Fished");
             fishingPause = true;
             ItemSO item = fishPool.FishItem();
             if (item.category.Equals(ItemSO.ItemCategory.Crew)) {
                 crewCandidate = crewGenerator.GenerateCrewProfile(item);
-                // Launch crew decision UI
+                decisionUI.setUpProfile(crewCandidate);
             } else {
-                // Launch Item decision
+                decisionUI.setUpItem(item);
             }
+            fishClock = 0;
         }
     }
 
@@ -105,6 +110,7 @@ public class GameManager : MonoBehaviour {
         fishingPause = false;
         crewCandidate = null;
         fishPool.ReleaseItem();
+        Debug.Log("Refused");
     }
 
     public void AddCrew(int pos) {

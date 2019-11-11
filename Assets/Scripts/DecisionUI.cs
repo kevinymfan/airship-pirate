@@ -21,10 +21,13 @@ public class DecisionUI : MonoBehaviour
     // 1 = wait reply
     // 2 = pop-down
 
+    [SerializeField]
+    private DialogueBox dialogueBox;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
-        this.transform.position = this.popDownPos;
+        this.transform.GetComponent<RectTransform>().localPosition = this.popDownPos;
         this.popUpTween.reset();
         this.popDownTween.reset();
         this.state = 0;
@@ -32,13 +35,12 @@ public class DecisionUI : MonoBehaviour
 
     private void Awake()
     {
-        this.popDownPos = this.transform.position;
+        this.popDownPos = this.transform.GetComponent<RectTransform>().localPosition;
         this.popUpTween.targetVec = this.popUpPos;
         this.popUpTween.startVec = this.popDownPos;
         this.popDownTween.targetVec = this.popDownPos;
         this.popDownTween.startVec = this.popUpPos;
-        this.popUpTween.reset();
-        this.state = 0;
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class DecisionUI : MonoBehaviour
 
     private void popUp()
     {
-        this.gameObject.transform.position = this.popUpTween.getTweenVec();
+        this.gameObject.transform.GetComponent<RectTransform>().localPosition = this.popUpTween.getTweenVec();
         if (this.popUpTween.isDone())
         {
             this.state = 1;
@@ -73,9 +75,10 @@ public class DecisionUI : MonoBehaviour
     }
     private void popDown()
     {
-        this.gameObject.transform.position = this.popDownTween.getTweenVec();
+        this.gameObject.transform.GetComponent<RectTransform>().localPosition = this.popDownTween.getTweenVec();
         if (this.popDownTween.isDone())
         {
+            this.gameManager.Refuse();
             this.gameObject.SetActive(false);
         }
     }
@@ -88,14 +91,14 @@ public class DecisionUI : MonoBehaviour
     public void setUpItem(ItemSO item)
     {
         this.item = item;
-        // Set up UI
+        dialogueBox.ShowKeepItemDialogue(item.ToString());
 
         this.gameObject.SetActive(true);
     }
     public void setUpProfile(ProfileSO profile)
     {
         this.profile = profile;
-        // Set up UI
+        dialogueBox.ShowKeepCrewDialogue(profile.ToString());
 
         this.gameObject.SetActive(true);
     }
