@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 21943020}
   - component: {fileID: 21943019}
   - component: {fileID: 21943021}
+  - component: {fileID: 21943022}
   m_Layer: 0
   m_Name: Airship
   m_TagString: Untagged
@@ -257,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: -1540635695
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 981124d6b7908a341a6679aa705d7141, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a2b51788a5356e4baba90dada364510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -277,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 21943018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1.345, y: 1.345, z: 1.345}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 297182562}
   - {fileID: 344010855}
@@ -320,6 +321,100 @@ MonoBehaviour:
   - {fileID: 1406334151}
   - {fileID: 1774358362}
   - {fileID: 495964323}
+--- !u!114 &21943022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21943018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaf41d2770c46c40b3525f172ebfa93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upDown:
+    animateDuration: 2.5
+    delay: 0
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.014888602
+        outSlope: 0.014888602
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.19350286
+      - serializedVersion: 3
+        time: 0.49909842
+        value: 0.9997269
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    loop: 1
+    targetVec: {x: 0, y: 0, z: 0}
+    startVec: {x: 0, y: 0, z: 0}
+    targetVal: 0
+    startVal: 0
+  rotate:
+    animateDuration: 3.5
+    delay: 0
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.014888602
+        outSlope: 0.014888602
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.19350286
+      - serializedVersion: 3
+        time: 0.49909842
+        value: 0.9997269
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    loop: 1
+    targetVec: {x: 0, y: 0, z: 0}
+    startVec: {x: 0, y: 0, z: 0}
+    targetVal: 0
+    startVal: 0
 --- !u!1 &66794747
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +870,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297182561}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.761, y: -3.157, z: 0}
+  m_LocalPosition: {x: 3.78, y: -2.68, z: 0}
   m_LocalScale: {x: 0.13027182, y: 0.12591107, z: 0.7434944}
   m_Children: []
   m_Father: {fileID: 21943020}
@@ -4979,6 +5074,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    loop: 0
     targetVec: {x: 0, y: 0, z: 0}
     startVec: {x: 0, y: 0, z: 0}
     targetVal: 0
@@ -5028,6 +5124,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    loop: 0
     targetVec: {x: 0, y: 0, z: 0}
     startVec: {x: 0, y: 0, z: 0}
     targetVal: 0

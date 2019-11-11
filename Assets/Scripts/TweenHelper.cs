@@ -11,6 +11,8 @@ public class TweenHelper
     public float delay = 0f;
     [SerializeField]
     public AnimationCurve curve;
+    [SerializeField]
+    public bool loop = false;
     private float animTime = 0f;
 
     [HideInInspector]
@@ -40,6 +42,9 @@ public class TweenHelper
     public void addTime(float deltaTime)
     {
         this.animTime += deltaTime;
+        if (this.loop && this.animTime > this.animateDuration) {
+            this.animTime -= this.animateDuration;
+        }
     }
 
     public Vector3 getTweenVec()
