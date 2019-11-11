@@ -1,15 +1,15 @@
 {
   "names": [
     { "choices": ["Empty beer bottle"] },
-    { "choices": ["Coor's lite"] },
-    { "choices": ["A brewery barrel"] }
+    { "choices": ["Coors Lite", "Bottle of wine"] },
+    { "choices": ["Keg of beer", "Six pack of beer", "Handle of vodka"] }
   ],
   "universalNames":["Bottle of something or other"],
   "flavors": [
     { "choices": ["Where is the rest?"] },
     { "choices": ["Looks refreshing!"] },
-    { "choices": ["It'll never end!"] }
+    { "choices": ["Turn up!", "Let the alcohol flow!", "It's lit!"] }
   ],
-  "universalFlavors":["It reeks of alcohol. Good!"]
+  "universalFlavors":["It reeks of alcohol. Good!", "Please enjoy responsibly", "Don't drink and fly", "Can I check your ID?"]
 }
 

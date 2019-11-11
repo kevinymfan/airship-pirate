@@ -1,8 +1,8 @@
 {
   "names": [
-    { "choices": ["Balloon animal"] },
-    { "choices": ["Compressed air"] },
-    { "choices": ["Liquid nitrogen"] }
+    { "choices": ["Balloon animal", "Inflated beach ball"] },
+    { "choices": ["Compressed air", "Scuba tank", "Budle of balloons"] },
+    { "choices": ["Liquid nitrogen", "Inflated bouncy house", "Helium container"] }
   ],
   "universalNames":[],
   "flavors": [

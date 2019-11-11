@@ -82,7 +82,7 @@ public class CrewGenerator
         profile.temperment = this.generateTemperance(rarity);
         profile.skillType = this.generateSkillType(rarity);
         profile.skillLevel = this.generateSkillLevel(rarity);
-
+        this.setText(profile, this.crewText, rarity);
         Debug.Log("=== Generating Crew Profile ===\n\tFrom item: " + crewItem + "\n\tCreated: " + profile);
         return profile;
     }

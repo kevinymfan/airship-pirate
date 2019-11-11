@@ -1,14 +1,14 @@
 {
   "names": [
-    { "choices": ["Rubbing alcohol"] },
-    { "choices": ["Gasoline tank"] },
-    { "choices": ["Hydrogen fuel cell"] }
+    { "choices": ["Rubbing alcohol", "AA batteries", "Cardboard box", "Bonsai tree", "Priceless painting"] },
+    { "choices": ["Gasoline tank", "Firewood", "Propane tank"] },
+    { "choices": ["Hydrogen fuel cell", "Kryptonite"] }
   ],
-  "universalNames":["Bottle of something or other"],
+  "universalNames":["Bottle of something or other", "Mysterious glowing rock"],
   "flavors": [
-    { "choices": ["Anything helps"] },
+    { "choices": ["Anything helps", "Well, I suppose that works", "Works in a pinch", "It's technically fuel..."] },
     { "choices": ["That'll keep her going!"] },
     { "choices": ["Fuel for days!"] }
   ],
-  "universalFlavors":["Well it says flamable..."]
+  "universalFlavors":["Well it says flammable...", "That could work"]
 }

@@ -1,7 +1,7 @@
 {
   "names": [
-    { "choices": ["Adam", "Jim", "Jack", "Garry", "Larry"] },
-    { "choices": ["Jessica", "Natalie", "Nancy", "Elizabeth"] }
+    { "choices": ["Adam", "Jim", "Jack", "Gary", "Larry", "Johnny", "Mitch", "Kevin", "Kelvin", "Joe", "Fawwad", "Timmy", "Michael", "Edward", "Thomas", "Antonio", "Keanu", "Kobe"] },
+    { "choices": ["Jessica", "Natalie", "Nancy", "Elizabeth", "Megan", "Catherine", "Olivia", "Christine", "Jenny", "Sasha", "Juana"] }
   ],
   "universalNames": ["???",  "Max", "Alex"],
   "flavors": [{ "choices": ["I have no use for food"] }, { "choices": [] }],
