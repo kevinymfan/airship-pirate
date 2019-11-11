@@ -39,6 +39,7 @@ public class Ship : MonoBehaviour {
     void Start() {
         crewSkills[ProfileSO.SkillType.Engine] = 0;
         crewSkills[ProfileSO.SkillType.Blower] = 0;
+        crewSkills[ProfileSO.SkillType.Lookout] = 0;
         nextTick = Time.time;
     }
 
@@ -128,7 +129,19 @@ public class Ship : MonoBehaviour {
         air = Mathf.Min(air + amount, maxAir);
     }
 
-    public int GetAirLevel() {
-        return Mathf.RoundToInt(air);
+    public float GetAirLevel() {
+        return air / maxAir;
+    }
+
+    public float GetFuelLevel() {
+        return fuel / maxFuel;
+    }
+
+    public float GetAlcoholLevel() {
+        return alcohol / maxAlcohol;
+    }
+
+    public float GetRarityBoost() {
+        return 0.25f * crewSkills[ProfileSO.SkillType.Lookout] / 15;
     }
 }
