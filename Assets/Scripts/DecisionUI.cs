@@ -99,13 +99,13 @@ public class DecisionUI : MonoBehaviour {
     }
     public void setUpItem(ItemSO item) {
         this.item = item;
-        dialogueBox.ShowKeepItemDialogue(item.ToString());
+        dialogueBox.ShowKeepItemDialogue(item.PrettyText());
 
         this.gameObject.SetActive(true);
     }
     public void setUpProfile(ProfileSO profile) {
         this.profile = profile;
-        dialogueBox.ShowKeepCrewDialogue(profile.ToString());
+        dialogueBox.ShowKeepCrewDialogue(profile.PrettyText());
 
         this.gameObject.SetActive(true);
     }

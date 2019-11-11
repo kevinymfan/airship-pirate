@@ -28,5 +28,9 @@ public class ProfileSO : ScriptableObject {
     public override string ToString() {
         return string.Format("{0} ({1}kg): {5} {6}\n\t\"{2}\"\n\tTolerance: {3}\n\tTemperment: {4}", crewName, weight, flavorText, tolerance, temperment, skillType, skillLevel);
     }
+    
+    public string PrettyText() {
+        return string.Format("{0}!\n\t\"{1}\"", crewName, flavorText, weight);
+    }
 }
 

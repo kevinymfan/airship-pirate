@@ -22,7 +22,11 @@ public class ItemSO : ScriptableObject
 
     public override string ToString()
     {
-        return string.Format("{4}-{0}:\n\t\"{2}\"\n\tRarity: {5}\n\tWeight: {1}kg\n\tQuantity: x{3}", itemName, weight, flavorText, quantity, category, rarity);
+        return string.Format("{4}-{0}:\n\t\"{1}\"\n\tRarity: {5}\n\tWeight: {2}kg\n\tQuantity: x{3}", itemName, flavorText, weight, quantity, category, rarity);
+    }
+
+    public string PrettyText() {
+        return string.Format("{0}!\n\t\"{1}\"\n\tweight: {2}kg\t+{3} to {4}", itemName, flavorText, weight, quantity, category);
     }
 }
 

@@ -22,7 +22,9 @@ public class ItemGenerator
     private RarityText alcoholText;
     private RarityText fuelText;
     private RarityText airText;
-    private RarityText flairText;
+    private RarityText flairClothText;
+    private RarityText flairShipText;
+    private RarityText crewText;
     [HideInInspector]
     public FishPool pool;
 
@@ -31,7 +33,8 @@ public class ItemGenerator
         alcoholText = RarityText.CreateFromJSON(Resources.Load<TextAsset>("itemText/alcoholText").ToString());
         fuelText = RarityText.CreateFromJSON(Resources.Load<TextAsset>("itemText/fuelText").ToString());
         airText = RarityText.CreateFromJSON(Resources.Load<TextAsset>("itemText/airText").ToString());
-        flairText = RarityText.CreateFromJSON(Resources.Load<TextAsset>("itemText/flairText").ToString());
+        flairShipText = RarityText.CreateFromJSON(Resources.Load<TextAsset>("itemText/flairShipText").ToString());
+        flairClothText = RarityText.CreateFromJSON(Resources.Load<TextAsset>("itemText/flairClothText").ToString());
     }
 
     public ItemSO GenerateItem(ItemCategory category, float rarity) {
@@ -122,13 +125,13 @@ public class ItemGenerator
 
     private void setClothFlair(ItemSO item, float rarity, bool flipW) {
         item.weight *= this.maxClothFlairW;
-        item.itemName = "STYLISH CLOTH";
+        this.setItem(item, flairClothText, rarity);
         
     }
 
     private void setShipFlair(ItemSO item, float rarity, bool flipW) {
         item.weight *= this.maxShipFlairW;
-        item.itemName = "STYLISH SHIP PART";
+        this.setItem(item, flairShipText, rarity);
     }
 
 }
