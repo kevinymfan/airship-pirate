@@ -3,59 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ship : MonoBehaviour {
+    float nextTick;
+    [SerializeField]
+    private float tickLength = 1f;
+
+    public float fuel = 100;
+    [SerializeField]
+    private float maxFuel = 100;
+    [SerializeField]
+    private int fuelUseTime = 5;
+    private int fuelClock = 0;
+
+    public float air = 100;
+    [SerializeField]
+    private float maxAir = 100;
+    public float baseAirLossRate = -1;
+    [SerializeField]
+    private float airGainBase = 0.5f;
+    [SerializeField]
+    private int airLossTime = 3;
+    private int airClock = 0;
+
+    public float alcohol = 0f;
+    [SerializeField]
+    private float maxAlcohol = 100f;
 
     [SerializeField]
-    int fuel;
-    [SerializeField]
-    int maxFuel;
-    [SerializeField]
-    int fuelUseRate;
-    [SerializeField]
-    int air;
-    [SerializeField]
-    int maxAir;
-    [SerializeField]
-    int airLossRate;
-    [SerializeField]
-    int alcohol;
-    [SerializeField]
-    int maxAlcohol;
+    private int speed = 10;
+    public int distanceTravelled = 0;
 
-    int speed = 10;
-    int distanceTravelled = 0;
-
-    int fuelClock = 0;
-    int airClock = 0;
-
-    const int maxNumCrew = 5;
-    ArrayList crewList = new ArrayList();
+    [SerializeField]
+    Crew[] crewList = new Crew[5];
     Dictionary<ProfileSO.SkillType, int> crewSkills = new Dictionary<ProfileSO.SkillType, int>();
 
-    // Start is called before the first frame update
     void Start() {
-
+        crewSkills[ProfileSO.SkillType.Engine] = 0;
+        crewSkills[ProfileSO.SkillType.Blower] = 0;
+        nextTick = Time.time;
     }
 
-    // Update is called once per frame
     void Update() {
-
-    }
-
-    public bool CanAdoptCrew() {
-        return crewList.Count < maxNumCrew;
-    }
-
-    public void AdoptCrew(Crew newMember) {
-        crewList.Add(newMember);
-        if (newMember.GetSkillLevel() > 0) {
-            crewSkills[newMember.GetSkillType()] += newMember.GetSkillLevel();
+        if (Time.time >= nextTick) {
+            PassTime();
+            nextTick = Time.time + tickLength;
         }
     }
 
-    public void BootCrew(Crew member) {
-        crewList.Remove(member);
-        if (member.GetSkillLevel() > 0) {
-            crewSkills[member.GetSkillType()] -= member.GetSkillLevel();
+    private int GetEmptyCrewSlot() {
+        for (int i = 0; i < crewList.Length; i++) {
+            if (!crewList[i].isActiveAndEnabled) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public bool CanAdoptCrew() {
+        return GetEmptyCrewSlot() != -1;
+    }
+
+    public void AdoptCrew(ProfileSO newMember) {
+        int crewSlot = GetEmptyCrewSlot();
+        if (crewSlot == -1) {
+            Debug.Log("Tried to adopt crew member, but no slots were available");
+            return;
+        }
+        crewList[crewSlot].profile = newMember;
+        if (crewList[crewSlot].GetSkillLevel() > 0) {
+            crewSkills[crewList[crewSlot].GetSkillType()] += crewList[crewSlot].GetSkillLevel();
+        }
+        crewList[crewSlot].gameObject.SetActive(true);
+    }
+
+    public void BootCrew(int crewSlot) {
+        crewList[crewSlot].gameObject.SetActive(false);
+        if (crewList[crewSlot].GetSkillLevel() > 0) {
+            crewSkills[crewList[crewSlot].GetSkillType()] -= crewList[crewSlot].GetSkillLevel();
         }
     }
 
@@ -63,41 +86,49 @@ public class Ship : MonoBehaviour {
         return speed + crewSkills[ProfileSO.SkillType.Engine];
     }
 
+    private float GetAirRate() {
+        return baseAirLossRate + crewSkills[ProfileSO.SkillType.Blower] * airGainBase;
+    }
+
     private void PassTime() {
         distanceTravelled += GetSpeed();
 
         ++fuelClock;
-        if (fuelClock > fuelUseRate && fuel > 0) {
+        if (fuelClock > fuelUseTime && fuel > 0) {
             fuel -= 1;
+            fuelClock = 0;
         }
 
         ++airClock;
-        if (airClock > airLossRate) {
-            air -= 1;
+        if (airClock > airLossTime) {
+            air = Mathf.Clamp(air + GetAirRate(), 0, maxAir);
+            airClock = 0;
         }
     }
 
-    public int GetAirLevel() {
-        return air;
-    }
-
-    public bool DrinkAlcohol(int amount) {
-        if (alcohol >= amount) {
-            alcohol -= amount;
-            return true;
+    public float ServeAlcohol() {
+        if (alcohol < 0.5) {
+            return 0f;
         }
-        return false;
+
+        float serving = Random.Range(0.5f, Mathf.Min(alcohol, 2f));
+        alcohol -= serving;
+        return serving;
     }
 
-    public void GainAlcohol(int amount) {
+    public void GainAlcohol(float amount) {
         alcohol = Mathf.Min(alcohol + amount, maxAlcohol);
     }
 
-    public void GainFuel(int amount) {
+    public void GainFuel(float amount) {
         fuel = Mathf.Min(fuel + amount, maxFuel);
     }
 
-    public void GainAir(int amount) {
+    public void GainAir(float amount) {
         air = Mathf.Min(air + amount, maxAir);
+    }
+
+    public int GetAirLevel() {
+        return Mathf.RoundToInt(air);
     }
 }

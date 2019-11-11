@@ -5,45 +5,55 @@ using UnityEngine;
 public class Crew : MonoBehaviour {
     public ProfileSO profile;
 
+    [SerializeField]
     private Ship ship;
 
-    int happiness;
-    int drunkenness;
+    public int happiness;
+    private int maxHappiness = 8;
+    private int happinessClock = 0;
+    [SerializeField]
+    private int happinessIncreaseTime = 3;
 
-    int happinessClock = 0;
+    public int drunkenness;
+    [SerializeField]
+    private float maxDrunkenness = 16f;
     int drinkingClock = 0;
+    [SerializeField]
+    int recoveryCooldown = 10;
+    [SerializeField]
+    int recoveryTime = 5;
+    [SerializeField]
+    int drinkingCooldown = 10;
 
+    float nextTick;
     [SerializeField]
-    int recoveryCooldown = 100;
-    [SerializeField]
-    int recoveryTime = 10;
-    [SerializeField]
-    int drinkingCooldown = 30;
+    private float tickLength = 1f;
 
-    const int maxDrunkenness = 8;
-    const int maxHappiness = 8;
-    
     void Start() {
-        happiness = 6;
+        nextTick = Time.time;
+        happiness = 6; 
         drunkenness = 0;
     }
 
     void Update() {
-        
+        if (Time.time >= nextTick) {
+            HandleDrinking();
+            HandleHappiness();
+            nextTick = Time.time + tickLength;
+        }
     }
 
     private void HandleDrinking() {
         ++drinkingClock;
         if (happiness < 3 && drinkingClock > drinkingCooldown) {
-            if (ship.DrinkAlcohol(profile.tolerance)) {
-                drinkingClock = 0;
-                drunkenness += 1;
-                return;
-            }
+            float alcoholServing = ship.ServeAlcohol();
+            drunkenness = Mathf.RoundToInt(Mathf.Min(drunkenness + alcoholServing * maxDrunkenness / profile.tolerance, maxDrunkenness));
+            drinkingClock = 0;
+            return;
         }
 
         if (drinkingClock > recoveryCooldown) {
-            drunkenness -= 1;
+            drunkenness = Mathf.Max(0, drunkenness - Mathf.RoundToInt(maxDrunkenness / 8));
             drinkingClock -= recoveryTime;
         }
     }
@@ -51,16 +61,17 @@ public class Crew : MonoBehaviour {
     private void HandleHappiness() {
         ++happinessClock;
 
-        if (drunkenness > 4 && happiness < maxHappiness) {
-            int threshold = 10;
-            if (drunkenness < 7) {
-                threshold = 20;
+        float normalizedDrunkenness = drunkenness / maxDrunkenness;
+        if (normalizedDrunkenness > 0.5 && happiness < maxHappiness) {
+            int threshold = happinessIncreaseTime;
+            if (normalizedDrunkenness < .8) {
+                threshold = happinessIncreaseTime * 2;
             }
             if (happinessClock > threshold) {
                 happiness += 1;
                 happinessClock = 0;
             }
-        } else if (drunkenness <= 1 && happiness > 0) {
+        } else if (normalizedDrunkenness < .1 && happiness > 0) {
             if (happinessClock > profile.temperment) {
                 happiness -= 1;
                 happinessClock = 0;
